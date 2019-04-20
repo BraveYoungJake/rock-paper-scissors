@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <script>
+        let gameChoices = ["rock","paper","scissors"];
+        let computerChoice = null;
+        function computerPlay() {
+            let computerChoice = gameChoices[Math.floor(Math.random()*gameChoices.length)];
+            return computerChoice;
+        }
+
+        console.log(computerPlay());
+    </script>
+</html>
