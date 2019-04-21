@@ -8,11 +8,11 @@
             return computerChoice;
         }
 
-        console.log(computerPlay());
-
         function playRound(playerSelection, computerSelection) {
             playerSelection= playerSelection.toLowerCase();
             computerSelection= computerSelection.toLowerCase();
+            let wins = 0;
+            let loses = 0;
             if (playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors") {
                 return "You didn't pick a valid choice. Try again."
             }
@@ -23,33 +23,49 @@
                     switch (computerSelection) {
                         case "paper":
                         return "You lose! Paper beats rock."
+                        loses++;
                         break;
                         case "scissors":
                         return "You win! Rock beats scissors."
+                        wins++;
                         break;
                     } 
                 } else if (playerSelection == "paper") {
                     switch (computerSelection) {
                         case "rock": 
                         return "You win! Paper beats rock."
+                        wins++;
                         break;
                         case "scissors":
                         return "You lose! Scissors beats paper."
+                        loses++;
                         break;
                     }
                 } else if (playerSelection == "scissors") {
                     switch (computerSelection) {
                         case "rock":
                         return "You lose! Rock beats scissors."
+                        loses++;
                         break;
                         case "paper":
                         return "You win! Scissors beats paper.";
+                        wins++;
+                        break;
                     }
                 }
             }
         }
 
+        console.log(playRound("scissors",computerPlay()));
 
-        console.log(playRound("scissors","paper"));
+
+        function game() {
+            for (i=0; i > 6; i++) {
+                playRound("scissors",computerPlay());
+                console.log(wins);
+                console.log(loses);
+            }
+        }
+
     </script>
 </html>
