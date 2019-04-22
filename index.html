@@ -3,6 +3,9 @@
     <script>
         let gameChoices = ["rock","paper","scissors"];
         let computerChoice = null;
+        let wins = 0;
+        let loses = 0;
+
         function computerPlay() {
             let computerChoice = gameChoices[Math.floor(Math.random()*gameChoices.length)];
             return computerChoice;
@@ -11,8 +14,7 @@
         function playRound(playerSelection, computerSelection) {
             playerSelection= playerSelection.toLowerCase();
             computerSelection= computerSelection.toLowerCase();
-            let wins = 0;
-            let loses = 0;
+
             if (playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors") {
                 return "You didn't pick a valid choice. Try again."
             }
@@ -22,50 +24,52 @@
                 if (playerSelection == "rock") {
                     switch (computerSelection) {
                         case "paper":
-                        return "You lose! Paper beats rock."
                         loses++;
+                        return "You lose! Paper beats rock."
                         break;
                         case "scissors":
-                        return "You win! Rock beats scissors."
                         wins++;
+                        return "You win! Rock beats scissors."
                         break;
                     } 
                 } else if (playerSelection == "paper") {
                     switch (computerSelection) {
                         case "rock": 
-                        return "You win! Paper beats rock."
                         wins++;
+                        return "You win! Paper beats rock."
                         break;
                         case "scissors":
-                        return "You lose! Scissors beats paper."
                         loses++;
+                        return "You lose! Scissors beats paper."
                         break;
                     }
                 } else if (playerSelection == "scissors") {
                     switch (computerSelection) {
                         case "rock":
-                        return "You lose! Rock beats scissors."
                         loses++;
+                        return "You lose! Rock beats scissors."
                         break;
                         case "paper":
-                        return "You win! Scissors beats paper.";
                         wins++;
+                        return "You win! Scissors beats paper.";
                         break;
                     }
                 }
             }
         }
 
-        console.log(playRound("scissors",computerPlay()));
+        // console.log(playRound("scissors",computerPlay()));
 
 
         function game() {
-            for (i=0; i > 6; i++) {
+            for (i=0; i < 6; i++) {
                 playRound("scissors",computerPlay());
-                console.log(wins);
-                console.log(loses);
+                console.log(`wins: ${wins}`);
+                console.log(`loses: ${loses}`);
             }
         }
+
+        game();
 
     </script>
 </html>
