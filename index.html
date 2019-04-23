@@ -1,50 +1,75 @@
 <!DOCTYPE html>
 <html>
     <script>
-        (function() {
-        //this object will be used to gauge wins between two choices as well as set the computers choices
-     const rules = {
-         rock: "paper",
-         paper: "scissors",
-         scissors: "rock",
-     }
-
-     const choices = Object.keys(rules);
-     // below sets the score for the game
-     let state = {
-         wins: 0,
-         loses: 0,
-         ties: 0,
-     }
-     //setting up how the computer will choose randomly between rock, paper, or scissors.
-     const randomChoice = () => choices[Math.floor(Math.random()*choices.length)]
-
-     //set up of the actual game
-     const play = (player,computer) => {
-         let playerChoice = player.toLowerCase();
-         let computerChoice = computer.toLowerCase();
-        //checks to make sure player picked a valid choice
-         if (! choices.includes(playerChoice)) {
-             return "You didn't pick a valid choice. Try again."
-         }
-         //determines winner and adjusts state accordingly
-        if (playerChoice === computerChoice) {
-            state.ties++;
-            return "Draw! You both selected the same."
+        let gameChoices = ["rock","paper","scissors"];
+        let computerChoice = null;
+       
+      
+        function computerPlay() {
+            let computerChoice = gameChoices[Math.floor(Math.random()*gameChoices.length)];
+            return computerChoice;
+        }
+      
+       
+        function playRound(playerSelection, computerSelection, stats){
+            playerSelection= playerSelection.toLowerCase();
+            if (playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors") {
+                window.alert("You didn't pick a valid choice. Try again.")
+            }
+            if (playerSelection === computerSelection) {
+                window.alert("Draw! You both picked the same.");
+            } else {
+                if (playerSelection == "rock") {
+                    switch (computerSelection) {
+                        case "paper":
+                        stats.loses++;
+                        window.alert("You lose! Paper beats rock.");
+                        break;
+                        case "scissors":
+                        stats.wins++;
+                        window.alert("You win! Rock beats scissors.");
+                        break;
+                    } 
+                } else if (playerSelection == "paper") {
+                    switch (computerSelection) {
+                        case "rock": 
+                        stats.wins++;
+                        window.alert("You win! Paper beats rock.");
+                        break;
+                        case "scissors":
+                        stats.loses++;
+                        window.alert("You lose! Scissors beats paper.");
+                        break;
+                    }
+                } else if (playerSelection == "scissors") {
+                    switch (computerSelection) {
+                        case "rock":
+                        stats.loses++;
+                        window.alert("You lose! Rock beats scissors.") ;
+                        break;
+                        case "paper":
+                        stats.wins++;
+                        window.alert("You win! Scissors beats paper.") ;
+                        break;
+                    }
+                }
+            }
+        }
+      
+      
+        function game() {
+                 let stats = {
+                 wins: 0,
+                loses: 0
+              }
+            for (i=0; i < 5; i++) {
+                var statement = playRound(prompt("type rock, paper, or scissors to begin"),computerPlay(),stats);
+                  console.log(statement)
+            }
+              window.alert(`Out of five games, you won ${stats.wins} and lost ${stats.loses}. The rest were draws.`);
+              
         }
 
-        if (rules[playerChoice] === computerChoice) {
-            loses++
-            return `You lose! ${computerChoice} beats ${playerChoice}!`;
-        } else {
-            wins++
-            return `You win! ${playerChoice} beats ${computerChoice}`;
-        }   
-        }
-        setInterval(() => {
-		console.log(play('scissors', randomChoice()));
-		console.log(state);
-	}, 500);
-        })
+      game()
     </script>
 </html>
