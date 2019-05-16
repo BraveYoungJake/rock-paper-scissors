@@ -1,0 +1,33 @@
+body {
+    background-color: #F5F4F0;
+    font-family: 'Amatic SC', cursive, sans-serif;
+}
+
+input:hover{
+    border-color: #e6e6e6;
+    border-style: solid;
+    border-width: 3px;
+}
+
+h1 {
+    font-size: 72px;
+}
+
+h2 {
+    font-size: 38px;
+}
+
+.text-card {
+    text-align: center;
+}
+
+.selection-box {
+    display: flex;
+    justify-content: center;
+}
+
+.choice-select {
+    height: 350px;
+    width: 250px;
+    padding: 10px;
+}

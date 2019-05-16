@@ -1,75 +1,23 @@
-<!DOCTYPE html>
 <html>
-    <script>
-        let gameChoices = ["rock","paper","scissors"];
-        let computerChoice = null;
+    <head>
+       <link rel="stylesheet" href="styles.css">
+       <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
        
-      
-        function computerPlay() {
-            let computerChoice = gameChoices[Math.floor(Math.random()*gameChoices.length)];
-            return computerChoice;
-        }
-      
-       
-        function playRound(playerSelection, computerSelection, stats){
-            playerSelection= playerSelection.toLowerCase();
-            if (playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors") {
-                window.alert("You didn't pick a valid choice. Try again.")
-            }
-            if (playerSelection === computerSelection) {
-                window.alert("Draw! You both picked the same.");
-            } else {
-                if (playerSelection == "rock") {
-                    switch (computerSelection) {
-                        case "paper":
-                        stats.loses++;
-                        window.alert("You lose! Paper beats rock.");
-                        break;
-                        case "scissors":
-                        stats.wins++;
-                        window.alert("You win! Rock beats scissors.");
-                        break;
-                    } 
-                } else if (playerSelection == "paper") {
-                    switch (computerSelection) {
-                        case "rock": 
-                        stats.wins++;
-                        window.alert("You win! Paper beats rock.");
-                        break;
-                        case "scissors":
-                        stats.loses++;
-                        window.alert("You lose! Scissors beats paper.");
-                        break;
-                    }
-                } else if (playerSelection == "scissors") {
-                    switch (computerSelection) {
-                        case "rock":
-                        stats.loses++;
-                        window.alert("You lose! Rock beats scissors.") ;
-                        break;
-                        case "paper":
-                        stats.wins++;
-                        window.alert("You win! Scissors beats paper.") ;
-                        break;
-                    }
-                }
-            }
-        }
-      
-      
-        function game() {
-                 let stats = {
-                 wins: 0,
-                loses: 0
-              }
-            for (i=0; i < 5; i++) {
-                var statement = playRound(prompt("type rock, paper, or scissors to begin"),computerPlay(),stats);
-                  console.log(statement)
-            }
-              window.alert(`Out of five games, you won ${stats.wins} and lost ${stats.loses}. The rest were draws.`);
-              
-        }
-
-      game()
-    </script>
+       <title>Rock, Paper, Scissors</title> 
+    </head>
+    <body>
+        <section class="text-card">
+            <h1>Rock, Paper, Scissors</h1>
+            <h2>Select Your Choice below</h2>
+        </section>
+        <section class="selection-box">
+            <input type="image" src="Images/paper.png" alt="Choose Paper" class ="choice-select" id="paper">
+            <input type="image" src="Images/rock.png" alt="Choose Rock" class ="choice-select"  id="rock">
+            <input type="image" src="Images/scissors.png" alt="Choose Scissors" class ="choice-select" id="scissors">
+        </section>
+        <section class="text-card">
+            <h3 id="results">filler copy</h3>
+        </section>
+        <script src="main.js"></script>
+    </body>
 </html>
